@@ -1,9 +1,6 @@
-use quadtree_rs::{area::AreaBuilder, point::Point, Quadtree};
-extern crate rand;
 
-mod noise;
-pub use noise::PerlinNoise;
-
+mod terrain_gen;
+pub use terrain_gen::Terrain;
 #[derive(PartialEq, Debug)]
 struct Pixel {
     state: u8,
@@ -22,12 +19,8 @@ impl Pixel {
 
 
 fn main() {
-    let perlin = PerlinNoise::new();
-    for i in 0..100 {
-        let value = perlin.get((i as f64) / 10.0);
-        println!("{}: {:.5}", i, value);
-    }
-    let mut terrain: Quadtree<u64, Pixel> = Quadtree::<u64, Pixel>::new(4);
+
+    let terrain: Terrain::new(500,500);
     
 }
 

@@ -1,8 +1,8 @@
 use simdnoise::*;
 use bevy_math::{uvec2, URect};
-use pixel_map::PixelMap;
+use pixel_map::{PixelMap, ILine};
 use bitflags::bitflags;
-
+use macroquad::prelude::*;
 bitflags! {
     #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
     struct Pixel: u32 {
@@ -14,8 +14,8 @@ bitflags! {
         const AIR = Self::DEAD.bits();
     }
 }
-
-fn main() {
+#[macroquad::main("wasm-artillery")]
+async fn main() {
 
     // MOCK RANDOM TERRAIN GENERATION
     let mut noise: Vec<u32> = vec![];
@@ -36,7 +36,34 @@ fn main() {
     );
 // FROM 1D NOISE TO 2D TERRAIN
 pixel_map.draw_rect(&URect::from_corners((0, 0).into(), (500, min).into()), Pixel::TERRAIN);
-for i in 0..=500 {
-    
+for i in noise {
+   let mut j = 0;
+    pixel_map.draw_rect(&URect::from_corners((j, i).into(), (j, min).into()), Pixel::TERRAIN);
+    j+=1;
+
+
+
+
+    let mut image = Image::gen_image_color(500 as u16, 500 as u16, SKYBLUE);
+    let texture = Texture2D::from_image(&image);
+
+
+
+
+    loop {
+        clear_background(WHITE);
+        let w = image.width();
+        let h = image.height();
+        for i in 0..=500 {
+            for j in 0..=500 {
+                match pixel_map.get_pixel(uvec2(i, j)) {
+                    Pixel::TERRAIN => image.set_pixel(i, j, BROWN)
+                    Pixel::AIR => image.set_pixel(i, j, SKYBLUE),
+                }
+            }
+        }
+    }
 }
+
+
 }

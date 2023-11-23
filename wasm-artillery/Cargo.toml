@@ -15,7 +15,7 @@ glam = "0.24.2"
 pixel_map = "0.3.0"
 rand = "0.8.5"
 simdnoise = "3.1.6"
-
+macroquad = "0.4.4"
 
 
 

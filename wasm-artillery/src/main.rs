@@ -1,4 +1,3 @@
-use simdnoise::*;
 use bevy_math::{uvec2, URect};
 use pixel_map::{PixelMap, ILine};
 use bitflags::bitflags;
@@ -27,8 +26,8 @@ async fn main() {
     for i in (0..100).rev() {
         noise.push((i as u32)+250)
     }
-    print!("{:?}", noise);
-// TERRAIN PIXEL MAP
+
+    // TERRAIN PIXEL MAP
     let mut pixel_map = PixelMap::<Pixel>::new(
         &uvec2(500, 500), // size of the pixel map
         Pixel::AIR,     // initial value
@@ -52,16 +51,25 @@ for i in noise {
 
     loop {
         clear_background(WHITE);
-        let w = image.width();
-        let h = image.height();
+
         for i in 0..=500 {
             for j in 0..=500 {
-                match pixel_map.get_pixel(uvec2(i, j)) {
-                    Pixel::TERRAIN => image.set_pixel(i, j, BROWN)
-                    Pixel::AIR => image.set_pixel(i, j, SKYBLUE),
+                    match pixel_map.get_pixel(uvec2(i, j)) {
+                    Some(&Pixel::TERRAIN) => image.set_pixel(i, j, BROWN),
+                    Some(&Pixel::AIR) =>  image.set_pixel(i, j, SKYBLUE),
+                    None => image.set_pixel(i, j, SKYBLUE),
+                    _ => image.set_pixel(i, j, PINK)
                 }
             }
         }
+
+
+
+        texture.update(&image);
+
+        draw_texture(&texture, 0., 0., WHITE);
+
+        next_frame().await
     }
 }
 

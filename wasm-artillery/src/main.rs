@@ -67,7 +67,7 @@ for i in noise {
 
         texture.update(&image);
 
-        draw_texture(&texture, 0., 0., WHITE);
+        draw_texture(texture, 0., 0., WHITE);
 
         next_frame().await
     }

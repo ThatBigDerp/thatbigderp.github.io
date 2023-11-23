@@ -18,7 +18,7 @@ bitflags = "2.4.1"
 pixel_map = "0.3.0"
 # rand = "0.8.5"
 # simdnoise = "3.1.6"
-macroquad = "0.4.4"
+macroquad = "0.3.20"
 getrandom = { version = "0.2.11", features = ["js"] }
 
 

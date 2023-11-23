@@ -2,6 +2,7 @@ use bevy_math::{uvec2, URect};
 use pixel_map::{PixelMap, ILine};
 use bitflags::bitflags;
 use macroquad::prelude::*;
+
 bitflags! {
     #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
     struct Pixel: u32 {
@@ -13,6 +14,7 @@ bitflags! {
         const AIR = Self::DEAD.bits();
     }
 }
+
 #[macroquad::main("wasm-artillery")]
 async fn main() {
 
@@ -67,7 +69,7 @@ for i in noise {
 
         texture.update(&image);
 
-        draw_texture(texture, 0., 0., WHITE);
+        draw_texture(&texture, 0., 0., WHITE);
 
         next_frame().await
     }

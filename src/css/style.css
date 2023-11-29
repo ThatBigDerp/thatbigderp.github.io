@@ -23,8 +23,8 @@
     left: -20%;
   }
   .card--info.info--2 {
-    bottom: 25%;
-    right: 15%;
+    /* bottom: 25%;
+    right: 15%; */
   }
   .card--info.info--2 .info--image img {
     right: -20%;

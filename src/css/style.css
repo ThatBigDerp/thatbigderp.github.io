@@ -8,74 +8,69 @@
     padding: 0;
   }
   
-  .card-box-shadow {
+  .card {
+    @apply relative w-[260px] h-80;
     box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.014), 0 6.7px 5.3px rgba(0, 0, 0, 0.02), 0 12.5px 10px rgba(0, 0, 0, 0.025), 0 22.3px 17.9px rgba(0, 0, 0, 0.03), 0 41.8px 33.4px rgba(0, 0, 0, 0.036), 0 100px 80px rgba(0, 0, 0, 0.05);
   }
+  .card--image {
+    @apply w-full h-full flex justify-center items-center overflow-hidden;
+  }
+  .card--image img {
+    @apply w-[140%] h-[140%] object-cover;
+  }
   .card--info {
-    transition: width 550ms ease, height 550ms ease, right 550ms ease, background 550ms ease;
+    @apply w-[var(--size)] h-[var(--size)] absolute overflow-hidden after:content-[""] after:absolute after:w-full after:h-full after:z-[1] after:opacity-0 after:transition-opacity after:duration-[550ms] after:ease-[ease] after:left-0 after:top-0;
+    --size: 20px;
+    transition: border-radius, 0.2s ease;
+    border-radius: 2px;
+    background: rgba(0, 0, 0, 0.75);
     box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.014), 0 6.7px 5.3px rgba(0, 0, 0, 0.02), 0 12.5px 10px rgba(0, 0, 0, 0.025), 0 22.3px 17.9px rgba(0, 0, 0, 0.03), 0 41.8px 33.4px rgba(0, 0, 0, 0.036), 0 100px 80px rgba(0, 0, 0, 0.05), 0 0px 2.2px rgba(0, 0, 0, 0.045), 0 0px 5.3px rgba(0, 0, 0, 0.065), 0 0px 10px rgba(0, 0, 0, 0.08), 0 0px 17.9px rgba(0, 0, 0, 0.095), 0 0px 33.4px rgba(0, 0, 0, 0.115), 0 0px 80px rgba(0, 0, 0, 0.16), 0 0.2px 2.2px rgba(0, 0, 0, 0.014), 0 0.6px 5.3px rgba(0, 0, 0, 0.02), 0 1.1px 10px rgba(0, 0, 0, 0.025), 0 2px 17.9px rgba(0, 0, 0, 0.03), 0 3.8px 33.4px rgba(0, 0, 0, 0.036), 0 9px 80px rgba(0, 0, 0, 0.05);
+    transition: width 550ms ease, height 550ms ease, right 550ms ease,
+      background 550ms ease;
   }
   .card--info::after {
-    transition: opacity 550ms ease;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.65) 0%,
+      rgba(0, 0, 0, 0.25) 50%,
+      transparent 100%
+    );
+  }
+  .card--info.info--1 {
+    @apply right-[80%] bottom-[47%];
   }
   .card--info.info--1 .info--image img {
-    top: -80%;
-    left: -20%;
+    @apply top-[-80%] left-[-20%];
   }
   .card--info.info--2 {
-    bottom: 25%;
-    right: 15%;
+    @apply right-[15%] bottom-1/4;
   }
   .card--info.info--2 .info--image img {
-    right: -20%;
-    bottom: -80%;
+    @apply right-[-20%] bottom-[-80%];
   }
   .card--info .icon {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 50%;
-    left: 50%;
+    @apply absolute w-full h-full flex justify-center items-center left-2/4 top-2/4;
+    text-align: center;
     transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
-  .card--info .icon ion-icon {
-    color: white;
+  .card--info .icon img {
+    @apply text-[white];
   }
   .card--info .info--text {
-    display: block;
-    position: absolute;
-    left: 10%;
-    bottom: 5%;
-    font-size: 0.55rem;
-    letter-spacing: 1px;
+    @apply block absolute text-[0.55rem] tracking-[1px] font-[bold] text-white whitespace-nowrap z-[2] opacity-0 translate-y-1/4 left-[10%] bottom-[5%];
     font-family: "Montserrat";
-    font-weight: bold;
-    color: #fff;
-    white-space: nowrap;
-    z-index: 2;
-    opacity: 0;
-    transform: translateY(25%);
     transition: opacity 250ms ease, transform 250ms ease;
   }
   .card--info .info--image {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+    @apply relative w-full h-full overflow-hidden;
   }
   .card--info .info--image img {
-    position: absolute;
-    width: 340%;
-    height: 340%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 550ms ease;
+    @apply absolute w-[340%] h-[340%] object-cover opacity-0 transition-opacity duration-[550ms] ease-[ease];
   }
   .card:hover .card--info {
     --size: 100px;
+    transition: border-radius, 0.2s ease;
+    border-radius: 9999px;
   }
   .card:hover .card--info::after {
     opacity: 1;
@@ -95,3 +90,113 @@
     opacity: 1;
     transform: translateY(0%);
   }
+
+  .background-scroll {
+    animation: background-scroll 1s forwards;
+  }
+  @keyframes background-scroll {
+    from {object-position: top;}
+    to {object-position: bottom;}
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* .square{
+    position:absolute;
+    bottom:-100px;
+    background-image: url("../img/test.svg");
+    animation:boxes 10s infinite ease-in-out;
+  } */
+  
+  @keyframes boxes{
+    0%{
+      bottom:-100px;
+      opacity:1;}
+    100%{
+      bottom:100vh;
+      transform:rotate(180deg);
+      }
+  }
+  
+  .square:nth-child(1){
+    width:75px;
+    height:75px;
+    left:7%;
+  }
+  
+  .square:nth-child(2){
+    width:65px;
+    height:65px;
+    left:15%;
+    animation-delay:4s;
+  }
+  
+  .square:nth-child(3){
+    width:82px;
+    height:82px;
+    left:45%;
+    animation-delay:8s;
+  }
+  
+  .square:nth-child(4){
+    width:70px;
+    height:70px;
+    left:55%;
+    animation-delay:2s;
+  }
+  
+  .square:nth-child(5){
+    width:60px;
+    height:60px;
+    left:27%;
+    animation-delay:6s;
+  }
+  
+  .square:nth-child(6){
+    width:55px;
+    height:55px;
+    left:60%;
+    animation-delay:4s;
+  }
+  
+  .square:nth-child(7){
+    width:90px;
+    height:90px;
+    left:85%;
+    animation-delay:9s;
+  }
+  
+  .square:nth-child(8){
+    width:70px;
+    height:70px;
+    left:75%;
+    animation-delay:4s;
+  }
+  
+  .square:nth-child(9){
+    width:45px;
+    height:45px;
+    left:10%;
+    animation-delay:7s;
+  }
+  
+  .square:nth-child(10){
+    width:55px;
+    height:55px;
+    left:60%;
+    animation-delay:7s;
+  }
+  

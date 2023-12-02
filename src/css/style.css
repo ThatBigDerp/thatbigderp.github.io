@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+    @apply h-screen bg-cover bg-no-repeat overflow-hidden flex items-center text-center justify-center;
+    background-image: url(../img/sky.svg);
+}
+img {
+    @apply w-auto h-auto;
+}
+.element {
+    @apply absolute;
+}
+#vis-uni-hero-text {
+    @apply text-center font-black uppercase text-[10vmin];
+    font-family: Avenir, sans-serif;
+    /* color: #000; */
+}
